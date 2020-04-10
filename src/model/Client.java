@@ -13,9 +13,9 @@ public class Client {
 	private int expDay;
 	private int expMonth;
 	private int expYear;
-	
+
 	public ArrayList <Load> Aloads;
-	
+
 	//Constants
 
 	public final static double SILVER = 0.015;

@@ -19,36 +19,36 @@ public class Ship{
 
 	//Methods
 
-	
-	public double calculateParcialValue(double result, String loadType){
-		
-        if(loadType.equalsIgnoreCase("DANGEROUS")) 
-        	 result*=390000;
-        else if(loadType.equalsIgnoreCase("PERISHABLE"))
-        	result*=250000;
-        else if(loadType.equalsIgnoreCase("NOTPERISHABLE"))
-        	result*=80000;
 
-    return result;
-}
+	public double calculateParcialValue(double result, String loadType){
+
+		if(loadType.equalsIgnoreCase("DANGEROUS")) 
+			result*=390000;
+		else if(loadType.equalsIgnoreCase("PERISHABLE"))
+			result*=250000;
+		else if(loadType.equalsIgnoreCase("NOTPERISHABLE"))
+			result*=80000;
+
+		return result;
+	}
 	public double calculateTotalValuePaid(double mult, String clientType) {
-        if(clientType.equalsIgnoreCase("SILVER") ) {
-            double value=mult*Client.SILVER;
-            mult-=value;
-        }
-        else if(clientType.equalsIgnoreCase("GOLD")) {
-            double value=mult*Client.GOLD;
-            mult-=value;
-        }
-        else if(clientType.equalsIgnoreCase("PLATINUM")) {
-            double value=mult*Client.PLATINUM;
-            mult-=value;
-        }
-        else {
-            return mult;
-        }
-        return mult;
-    }
+		if(clientType.equalsIgnoreCase("SILVER") ) {
+			double value=mult*Client.SILVER;
+			mult-=value;
+		}
+		else if(clientType.equalsIgnoreCase("GOLD")) {
+			double value=mult*Client.GOLD;
+			mult-=value;
+		}
+		else if(clientType.equalsIgnoreCase("PLATINUM")) {
+			double value=mult*Client.PLATINUM;
+			mult-=value;
+		}
+		else {
+			return mult;
+		}
+		return mult;
+	}
 	public boolean addLoad() {
 		boolean add = true;
 		if(calculateTotalWeight()>MAXWEIGHT) {
@@ -75,33 +75,33 @@ public class Ship{
 		return pTotalWeight;
 	}	
 	public boolean calculateClientType(double kgSent, double totalValue, int select) {
-		  boolean updated = false;
-	        if(kgSent>=35000 && clients[select].getClientType() == "NORMAL") {
-	             clients[select].setClientType("SILVER");
-	            updated = true;
-	        }
-	        if(kgSent>=55000||totalValue>=2000000 && clients[select].getClientType() == "SILVER") {
-	            clients[select].setClientType("GOLD");
-	            updated = true;
-	        }
+		boolean updated = false;
+		if(kgSent>=35000 && clients[select].getClientType() == "NORMAL") {
+			clients[select].setClientType("SILVER");
+			updated = true;
+		}
+		else if(kgSent>=55000||totalValue>=2000000 && clients[select].getClientType() == "SILVER") {
+			clients[select].setClientType("GOLD");
+			updated = true;
+		}
 
-	       if(totalValue>=5000000 && clients[select].getClientType() == "GOLD") {
-	            clients[select].setClientType("PLATINUM");
-	        updated = true;
-	        }
-	        return updated;
-	    }
-	    public String notifyNewClientType(boolean updated, int select) {
-	        String message = "";
-	         if(updated == true) {
-	                message = "The client: "+clients[select].getName()+" is updated to the category: "+clients[select].getClientType()+" \n";
-	            } 
-	            else if
-	            (updated == false) {
-	                message = "The client: "+clients[select].getName()+" is not allowed to updated new category, keeps on: "+clients[select].getClientType()+" \n";
-	            }
-	         return message;
-	    }
+		else if(totalValue>=5000000 && clients[select].getClientType() == "GOLD") {
+			clients[select].setClientType("PLATINUM");
+			updated = true;
+		}
+		return updated;
+	}
+	public String notifyNewClientType(boolean updated, int select) {
+		String message = "";
+		if(updated == true) {
+			message = "The client: "+clients[select].getName()+" is updated to the category: "+clients[select].getClientType()+" \n";
+		} 
+		else if
+		(updated == false) {
+			message = "The client: "+clients[select].getName()+" is not allowed to updated new category, keeps on: "+clients[select].getClientType()+" \n";
+		}
+		return message;
+	}
 	public String unloadShip(){
 		String message = "";
 		Aloads.clear();
@@ -109,7 +109,7 @@ public class Ship{
 		return message;
 	}	
 	public boolean shipSail() {
-		boolean toSail; //revisar salida 
+		boolean toSail; 
 		if((calculateTotalWeight()>=MINWEIGHT || Aloads.size() >= 2) && sanityCondition() == true && calculateTotalWeight()<=MAXWEIGHT){
 			toSail = true;
 		}else { 
@@ -126,27 +126,27 @@ public class Ship{
 			}     
 		}return correct;
 	}
-//	public String addClient(String name, int kgSent, String clientType, int register, int expDay, int expMonth, int expYear){
-//		String message = "";
-//		boolean ok = false;
-//		Client objSearch=searchClient(name);
-//		if(objSearch!=null)
-//			message="Client already exists";
-//		else 
-//		{
-//			for(int i = 0; i < clients.length && !ok; i++) {
-//				if(clients[i]==null) {
-//					clients[i]= new Client(name, kgSent, clientType, register, expDay,expMonth, expYear); {
-//						ok = true;
-//						message = "Client was added";
-//					}
-//				}	
-//				if(ok=false)
-//					message = "Client capacity was reached";
-//			}
-//		}
-//		return message;
-//	}
+	//	public String addClient(String name, int kgSent, String clientType, int register, int expDay, int expMonth, int expYear){
+	//		String message = "";
+	//		boolean ok = false;
+	//		Client objSearch=searchClient(name);
+	//		if(objSearch!=null)
+	//			message="Client already exists";
+	//		else 
+	//		{
+	//			for(int i = 0; i < clients.length && !ok; i++) {
+	//				if(clients[i]==null) {
+	//					clients[i]= new Client(name, kgSent, clientType, register, expDay,expMonth, expYear); {
+	//						ok = true;
+	//						message = "Client was added";
+	//					}
+	//				}	
+	//				if(ok=false)
+	//					message = "Client capacity was reached";
+	//			}
+	//		}
+	//		return message;
+	//	}
 	public Client searchClient(String name) {
 		Client objSearch=null;
 		boolean findClient = false;
@@ -171,14 +171,13 @@ public class Ship{
 		}
 		return result;
 	}	
-	public void totalAccumulate(int x, String name) { //AQUI ESTA EL ERROR
-	
-        for (int i = 0; i < clients.length; i++) {
-            if(clients[i].getName().equalsIgnoreCase(name)) {
-            	double a = clients[i].getKgSent();
-                a+=x;
-                clients[i].setKgSent(a);
-            }
-        }
-    }
+	public void totalAccumulate(int x, String name) { 
+		for (int i = 0; i < clients.length; i++) {
+			if(clients[i].getName().equalsIgnoreCase(name)) {
+				double a = clients[i].getKgSent();
+				a+=x;
+				clients[i].setKgSent(a);
+			}
+		}
+	}
 }
