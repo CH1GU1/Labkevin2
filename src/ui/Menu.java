@@ -3,7 +3,7 @@ import model.*;
 import java.util.*;
 
 public class Menu {
-	
+
 	//Attributes and constants declaration
 	private Ship ship = new Ship("Morgan");
 	private Client client;
@@ -22,33 +22,36 @@ public class Menu {
 	private final static int C5 = 5;
 
 
-
+	//Methods
 
 	/**
-	*This method initialize the menu.
-	*<b>post:</b> The Menu is ready.<br>
-	*/
+	 *This method initialize the menu.
+	 *<b> <br>
+	 *<b>post:</b> The Menu is ready.<br>
+	 */
 	public Menu() {
 		this.ship = startShip();
 	}
 	/**
-	*This method initialize the ship.
-	*
-	*<b>post:</b> The ship is already created.<br>
-	*<b>post:</b> Returns ship.<br>
-	*/
+	 *This method initialize the ship.
+	 *
+	 *<b> <br>
+	 *
+	 *<b>post:</b> The ship is already created.<br>
+	 *<b>post:</b> Returns ship.<br>
+	 */
 	public Ship startShip() {
-		String name = "Morgan";
+		String name = "The Pirate";
 		Ship ship = new Ship(name);
 		System.out.println("****"+name+"****");
 		return ship;
 	}
 	/**
-	*This method initialize the five clients and deploy it.
-	*<b>pre:</b> Ship already created.<br>
-	*
-	*<b>post:</b> The five clients are already created.<br>
-	*/
+	 *This method initialize the five clients and deploy it.
+	 *<b>pre:</b> Ship already created.<br>
+	 *
+	 *<b>post:</b> The five clients are already created.<br>
+	 */
 	public void initializeClients() {
 		ship.clients [0] = new Client("Juan", 0, "NORMAL", 0001, 20, 2,2020);
 		ship.clients [1] = new Client("Rosa", 0, "NORMAL", 0002, 15, 1,2020);
@@ -59,23 +62,23 @@ public class Menu {
 		System.out.println("Select option 7. to show the complete information from them or continue adding loads \n");
 	}
 	/**
-	*This method show the five clients.
-	*<b>pre:</b> Clients are already created.<br>
-	*<b>pre:</b> Kilograms transported will be visible after ship sail (option "can the ship sail?") that means after complete the travel .<br>
-	*
-	*<b>post:</b> Show the five clients updated.<br>
-	*/	
+	 *This method show the five clients.
+	 *<b>pre:</b> Clients are already created.<br>
+	 *<b>pre:</b> Kilograms transported will be visible after ship sail (option "can the ship sail?") that means after complete the travel .<br>
+	 *
+	 *<b>post:</b> Show the five clients updated.<br>
+	 */	
 	public void showClients() {
 		for (int i = 0; i < ship.clients.length; i++) {
 			System.out.println("CLIENT #"+ (i+1) +"\n"+"Name: "+ship.clients[i].getName()+"\n"+""+"Kilograms transported: " + ship.clients[i].getKgSent() + "\n"+""+"Client type: "+ship.clients[i].getClientType()+"\n"+""+"Register number: "+ship.clients[i].getNumber()+"\n"+"Day: "+ship.clients[i].getDay()+"\n"+"Month: "+ship.clients[i].getMonth()+"\n"+"Year: "+ship.clients[i].getYear()+"\n");
 		}
 	}
 	/**
-	*This method reads the entry data by the client and decide if the load can create or no.
-	*<b>pre:</b> Clients are already created. <br> 
-	*
-	*<b>post:</b> Load is created or not, depend of the data entry of user. <br>
-	*/
+	 *This method reads the entry data by the client and decide if the load can create or no.
+	 *<b>pre:</b> Clients are already created. <br> 
+	 *
+	 *<b>post:</b> Load is created or not, depend of the data entry of user. <br>
+	 */
 	public void readLoad() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("Entry boxes quantity");
@@ -156,14 +159,14 @@ public class Menu {
 		} 			
 	}
 	/**
-	*This is an auxiliary method for the method "readLoad".
-	*<b>pre:</b> Clients are already created. <br>
-	*<b>pre:</b> Select an option between 1 to 5. <br>
-	*
-	*@param g is the option of client  
-	*
-	*<b>post:</b> returns owner is the String of client name. <br>
-	*/
+	 *This is an auxiliary method for the method "readLoad".
+	 *<b>pre:</b> Clients are already created. <br>
+	 *<b>pre:</b> Select an option between 1 to 5. <br>
+	 *
+	 *@param g is the option of client  
+	 *
+	 *<b>post:</b> returns owner is the String of client name. <br>
+	 */
 	public String switchMenuClients(int g) {
 		String owner = "";
 		switch (g) {
@@ -189,16 +192,23 @@ public class Menu {
 		return owner;
 	}
 	/**
-	*This method shows the Main menu.
-	*<b>pre:</b> <br>
-	*
-	*<b>post:</b> shows the options. <br>
-	*/
+	 *This method shows the Main menu.
+	 *<b>pre:</b> <br>
+	 *
+	 *<b>post:</b> shows the options. <br>
+	 */
 	public void showMenu() {
 		System.out.println("********MENU********");
 		System.out.println();
 		System.out.println(" (1). Add load to a client\n (2). Can the ship sail?\n (3). If you want to **unload ship manual**, select this option\n (4). Modify client category\n (5). Show kilograms transported by client\n (6). Show value paid by client\n (7). Show clients\n (8). Exit\n ");
 	}
+	/**
+	 *This method shows the historical kilograms sent by clients.
+	 *<b>pre:</b>The ship made minimum one travel. <br>
+	 *<b>pre:</b>A client made a load and the was sail. <br>
+	 *
+	 *<b>post:</b> A historical charge of a clients was saved. <br>
+	 */
 	public void toShowKgClient() {
 		for (int i = 0; i < ship.clients.length; i++) {
 			String name = ship.clients[i].getName();
@@ -207,6 +217,13 @@ public class Menu {
 			System.out.println("The kilograms accumlated at this moment by "+ship.clients[i].getName()+" are "+ship.clients[i].getKgSent()+"\n");
 		}
 	}
+	/**
+	 *This method shows the value to paid for the client that the user choose.
+	 *<b>pre:</b>A client must has a load as minimum. <br>
+	 *<b>pre:</b> Select an option between 1 to 5. <br>
+	 *
+	 *<b>post:</b>Show the value to paid for the client that user elected. <br>
+	 */
 	public void toPaid() {
 		Scanner sc = new Scanner(System.in);
 		int choice; 
@@ -250,6 +267,13 @@ public class Menu {
 		break;
 		}
 	}
+	/**
+	 *This method makes the modification of category of the clients.
+	 *<b>pre:</b>A load of client has taken at least one travel and meet the conditions to be upgraded. <br>
+	 *<b>pre:</b> Select an option between 1 to 5. <br>
+	 *
+	 *<b>post:</b>Show if the client could be upgraded or not, is yes will show the new category. <br>
+	 */
 	public void toModify() {
 		Scanner sc = new Scanner(System.in);
 		System.out.println("For modify client category please select one of the five clients \n");
@@ -298,6 +322,12 @@ public class Menu {
 			break;
 		}
 	}
+	/**
+	 *This method read the option entry by the client for the Main menu.
+	 *<b>pre:</b>Select an option between 1 to 8. <br>
+	 *
+	 *<b>post:</b><br>
+	 */
 	public int readOption() {
 		Scanner sc = new Scanner(System.in);
 		int choice = sc.nextInt();
@@ -305,6 +335,12 @@ public class Menu {
 		System.out.println();
 		return choice;
 	}
+	/**
+	 *This method analize the position of the array list of loads.
+	 *<b>pre:</b>A load was created as minimum. <br>
+	 *
+	 *<b>post:</b>Returns the position of the loads array. <br>
+	 */
 	public int occupatePosition() {
 		int a = -1;
 		for (int i = 0; i < ship.Aloads.size(); i++) {
@@ -313,6 +349,13 @@ public class Menu {
 		}
 		return a;
 	}
+	/**
+	 *This method is a switch that allows entering the options of the Main menu by an user selection.
+	 *<b>pre:</b>Clients are already created.<br>
+	 *
+	 *<b>post:</b>Redirect to the entered option. <br>
+	 *@param choice is the option by the user
+	 */
 	public void operation(int choice) {
 		switch(choice) {
 		case SHOW_CLIENTS:
@@ -364,6 +407,12 @@ public class Menu {
 			break;
 		}
 	}
+	/**
+	 *This method starts the program and keeps showing the Main menu until user select option "EXIT".
+	 *<b>pre:</b>.<br>
+	 *
+	 *<b>post:</b>the program starts and the clients are initialized and show menu . <br>
+	 */
 	public void startProgram() {
 		int option;
 		initializeClients();
@@ -373,5 +422,4 @@ public class Menu {
 			operation(option);
 		} while(option!=EXIT);
 	}
-
 }
