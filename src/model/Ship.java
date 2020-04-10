@@ -45,17 +45,18 @@ public class Ship{
 	 *
 	 *<b>pre:</b>A load for a client was created as minimum. <br>
 	 *
-	 *@param mult is the result of parcial value to pay   
+	 *@param mult is the result of parcial value to pay
 	 *@param loadType is the type of load
+	 *@param clientType is the type of client
 	 *
-	 *<b>post:</b> Returns mult is the operation of apply the discount. <br>
+	 *<b>post:</b> Returns x is the operation of apply the discount. <br>
 	 */
-	public double calculateTotalValuePaid(double mult, String clientType) {
-		if(clientType.equalsIgnoreCase("SILVER") ) {
+	public double calculateTotalValuePaid(double mult, String clientType, String loadType) {
+		if(clientType.equalsIgnoreCase("SILVER") && loadType.equalsIgnoreCase("PERISHABLE")) {
 			double value=mult*Client.SILVER;
 			mult-=value;
 		}
-		else if(clientType.equalsIgnoreCase("GOLD")) {
+		else if(clientType.equalsIgnoreCase("GOLD") && (loadType.equalsIgnoreCase("PERSISHABLE") || loadType.equalsIgnoreCase("NOTPERISHABLE"))) {
 			double value=mult*Client.GOLD;
 			mult-=value;
 		}
@@ -280,6 +281,21 @@ public class Ship{
 				double a = clients[i].getKgSent();
 				a+=x;
 				clients[i].setKgSent(a);
+			}
+		}
+	}
+	/**
+	 * This method save the historical value paid by the client
+	 * 
+	 * @param x is the total value paid at the moment of add loads to the ship
+	 * @param name is the name of the client
+	 */
+	public void totalValuePaidAccumulate(double x, String name) {
+		for (int i = 0; i < clients.length; i++) {
+			if(clients[i].getName().equalsIgnoreCase(name)) {
+				double a = clients[i].getValuePaid();
+				a+=x;
+				clients[i].setValuePaid(a);
 			}
 		}
 	}

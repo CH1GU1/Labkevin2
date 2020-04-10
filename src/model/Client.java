@@ -10,6 +10,7 @@ public class Client {
 	private double kgSent;
 	private String clientType;
 	private int register;
+	private double valuePaid;
 	private int expDay;
 	private int expMonth;
 	private int expYear;
@@ -39,12 +40,13 @@ public class Client {
 	 *
 	 *<b>post:</b> Returns an object of Client type. <br>
 	 */
-	public Client(String name, int kgSent, String clientType, int register, int expDay, int expMonth, int expYear){
+	public Client(String name, int kgSent, String clientType, int register,double valuePaid, int expDay, int expMonth, int expYear){
 
 		this.name = name;
 		this.kgSent = kgSent;
 		this.clientType = clientType;
 		this.register = register;
+		this.valuePaid = valuePaid;
 		this.expDay = expDay;
 		this.expMonth = expMonth;
 		this.expYear = expYear;
@@ -139,13 +141,35 @@ public class Client {
 		return register;
 	}
 	/**
+	 *This method set the value paid by client.
+	 *
+	 *<b>pre:</b> <br>
+	 *
+	 *@param valuePaid is the historical price paid by the client
+	 *
+	 *<b>post:</b>Set the value paid. <br>
+	 */
+	public void setValuePaid(double valuePaid){
+		this.valuePaid = valuePaid;
+	}
+	/**
+	 *This method get the value paid by client.
+	 *
+	 *<b>pre:</b>client was already created <br>
+	 *
+	 *<b>post:</b>returns the value paid. <br>
+	 */
+	public double getValuePaid(){
+		return valuePaid;
+	}
+	/**
 	 *This method set the day of expedition of register number.
 	 *
 	 *<b>pre:</b> <br>
 	 *
 	 *@param expDay is the expedition day of register number 
 	 *
-	 *<b>post:</b>Set the day of expedtion of register number. <br>
+	 *<b>post:</b>Set the day of expedition of register number. <br>
 	 */
 	public void setDay(int expDay){
 		this.expDay = expDay;
@@ -155,7 +179,7 @@ public class Client {
 	 *
 	 *<b>pre:</b> client was already created.<br>
 	 *
-	 *<b>post:</b>Returns the day of expedtion of register number. <br>
+	 *<b>post:</b>Returns the day of expedition of register number. <br>
 	 */
 	public int getDay(){
 		return expDay;
@@ -167,7 +191,7 @@ public class Client {
 	 *
 	 *@param expMonth is the expedition month of register number 
 	 *
-	 *<b>post:</b>Set the month of expedtion of register number. <br>
+	 *<b>post:</b>Set the month of expedition of register number. <br>
 	 */
 	public void setMonth(int expMonth){
 		this.expMonth = expMonth;
@@ -177,7 +201,7 @@ public class Client {
 	 *
 	 *<b>pre:</b> client was already created.<br>
 	 *
-	 *<b>post:</b>Returns the month of expedtion of register number. <br>
+	 *<b>post:</b>Returns the month of expedition of register number. <br>
 	 */
 	public int getMonth(){
 		return expMonth;
@@ -189,7 +213,7 @@ public class Client {
 	 *
 	 *@param expYear is the expedition year of register number 
 	 *
-	 *<b>post:</b>Set the year of expedtion of register number. <br>
+	 *<b>post:</b>Set the year of expedition of register number. <br>
 	 */
 	public void setYear(int expYear){
 		this.expYear = expYear;
@@ -199,7 +223,7 @@ public class Client {
 	 *
 	 *<b>pre:</b> client was already created.<br>
 	 *
-	 *<b>post:</b>Returns the year of expedtion of register number. <br>
+	 *<b>post:</b>Returns the year of expedition of register number. <br>
 	 */
 	public int getYear(){
 		return expYear;
